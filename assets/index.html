@@ -1,11 +1,28 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>title</title>
-    <link rel="stylesheet" href="css/main.css">
-  </head>
-  <body>
-    <h1 class="testing"> Hello this is header </h1>
-  </body>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Spotify Manager</title>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+  <div id="app">
+    {{ message }}
+    <h1 v-for="num in things">
+      {{ num }}
+    </h1>
+
+    <button v-on:click="callMarcel()"> Call </button>
+    <input v-model="message" />
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/vue.js"></script>
+  <script src="js/index.js"></script>
+</body>
+
 </html>
