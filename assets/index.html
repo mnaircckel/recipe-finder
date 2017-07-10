@@ -3,19 +3,65 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Spotify Manager</title>
+  <title>Music Manager</title>
 
   <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/vuetify.min.css">
   <link rel="stylesheet" href="css/main.css">
+  <!-- Font library and icon pack -->
+  <link rel="stylesheet" href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons'>
 </head>
 
 <body>
   <div id="app">
+    <v-app v-cloak standalone>
+      <v-navigation-drawer permanent floating light class="transparent">
+        <v-card class="ma-3">
+          <v-list dense class="py-0">
+            <v-list-tile v-for="item in dashItems" :key="item" class="grey lighten-2">
+              <v-list-tile-action>
+                <v-icon>{{ item.icon }}</v-icon>
+              </v-list-tile-action>
+              <v-list-tile-content>
+                <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+              </v-list-tile-content>
+            </v-list-tile>
+          </v-list>
+        </v-card>
+      </v-navigation-drawer>
+      <v-toolbar class="green" light>
+        <v-toolbar-title>Music Manager</v-toolbar-title>
+      </v-toolbar>
+      <main>
+        <v-container fluid>
 
+          <v-layout row>
+            <v-flex xs1>
+              <v-subheader class="black--text text--lighten-1">
+                <v-icon>search</v-icon>
+              </v-subheader>
+            </v-flex>
+            <v-flex xs2>
+              <v-text-field v-model="songSearchText" label="Enter a song..." light></v-text-field>
+            </v-flex>
+          </v-layout>
+
+          <v-list>
+            <v-list-tile avatar v-for="song in songs" :key="song">
+              <v-list-tile-content>
+                <v-list-tile-title v-text="song"></v-list-tile-title>
+              </v-list-tile-content>
+            </v-list-tile>
+          </v-list>
+
+        </v-container>
+      </main>
+    </v-app>
   </div>
 
   <!-- Scripts -->
   <script src="js/vue.js"></script>
+  <script src="js/vuetify.js"></script>
   <script src="js/index.js"></script>
 </body>
 
