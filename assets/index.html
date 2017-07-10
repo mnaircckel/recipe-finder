@@ -42,18 +42,9 @@
               </v-subheader>
             </v-flex>
             <v-flex xs2>
-              <v-text-field v-model="songSearchText" label="Enter a song..." light></v-text-field>
+              <v-text-field v-model="songUrl" @keyup.enter.native="playSong" label="Enter a URL..." light></v-text-field>
             </v-flex>
           </v-layout>
-
-          <v-list>
-            <v-list-tile avatar v-for="song in songs" :key="song">
-              <v-list-tile-content>
-                <v-list-tile-title v-text="song"></v-list-tile-title>
-              </v-list-tile-content>
-            </v-list-tile>
-          </v-list>
-
         </v-container>
       </main>
     </v-app>

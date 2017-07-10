@@ -10,7 +10,7 @@ var app = new Vue({
         icon: 'question_answer'
       }
     ],
-    songs: [],
-    songSearchText: ''
-  }
+    songUrl: ''
+  },
+  methods: {}
 })
