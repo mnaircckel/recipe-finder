@@ -24,9 +24,10 @@ var app = new Vue({
           app.recipes = response.data.hits;
         })
         .catch(function (error) {
-          app.recipes = []
+          app.recipes = [];
           console.log(error);
         });
+        this.foodQuery = '';
     }
   }
 })

@@ -41,13 +41,38 @@
                 <v-icon>search</v-icon>
               </v-subheader>
             </v-flex>
-            <v-flex xs2>
-              <v-text-field v-model="foodQuery" @keyup.enter.native="searchFoods" label="Search..." light></v-text-field>
+            <v-flex xs3>
+              <v-text-field v-model="foodQuery" @keyup.enter.native="searchFoods" label="Find a recipe..." light></v-text-field>
             </v-flex>
+            <v-flex xs1>
+              <v-btn light @click.native="searchFoods">Search</v-btn>
+            <v-flex>
           </v-layout>
-          <ol>
-            <li v-for="r in recipes" v-text="r.recipe.label"></li>
-          </ol>
+          <v-card v-for="(r, i) in recipes">
+            <v-card-media
+              class="white--text"
+              height="260px"
+              contain
+              :src="r.recipe.image"
+            >
+              <v-container fill-height fluid>
+                <v-layout fill-height>
+                  <v-flex xs12 align-end flexbox>
+                    <span class="headline"></span>
+                  </v-flex>
+                </v-layout>
+              </v-container>
+            </v-card-media>
+            <v-card-title>
+              <div>
+                <span class="grey--text">Result {{ i+1 }}</span><br>
+                <span v-text="r.recipe.label"></span><br>
+              </div>
+            </v-card-title>
+            <v-card-actions>
+              <v-btn flat class="orange--text">Go to Recipe</v-btn>
+            </v-card-actions>
+          </v-card>
         </v-container>
       </main>
     </v-app>
