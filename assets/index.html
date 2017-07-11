@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Music Manager</title>
+  <title>Recipe Finder</title>
 
   <!-- Stylesheets -->
   <link rel="stylesheet" href="css/vuetify.min.css">
@@ -30,7 +30,7 @@
         </v-card>
       </v-navigation-drawer>
       <v-toolbar class="green" light>
-        <v-toolbar-title>Music Manager</v-toolbar-title>
+        <v-toolbar-title>Recipe Finder</v-toolbar-title>
       </v-toolbar>
       <main>
         <v-container fluid>
@@ -42,9 +42,12 @@
               </v-subheader>
             </v-flex>
             <v-flex xs2>
-              <v-text-field v-model="songUrl" @keyup.enter.native="playSong" label="Enter a URL..." light></v-text-field>
+              <v-text-field v-model="foodQuery" @keyup.enter.native="searchFoods" label="Search..." light></v-text-field>
             </v-flex>
           </v-layout>
+          <ol>
+            <li v-for="r in recipes" v-text="r.recipe.label"></li>
+          </ol>
         </v-container>
       </main>
     </v-app>
@@ -53,6 +56,7 @@
   <!-- Scripts -->
   <script src="js/vue.js"></script>
   <script src="js/vuetify.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="js/index.js"></script>
 </body>
 

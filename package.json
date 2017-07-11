@@ -9,7 +9,7 @@
   "author": "Marcel Champagne, Thu Nguyen",
   "license": "ISC",
   "dependencies": {
-    "cookie-parser": "^1.4.3",
+    "axios": "^0.16.2",
     "express": "^4.15.3"
   }
 }
