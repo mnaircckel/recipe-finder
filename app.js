@@ -23,6 +23,8 @@ app.get('/get_recipes', function(req, res) {
       },
       params: {
         q: req.query.q,
+        from: 0,
+        to: 5
       }
     })
     .then(function(response) {

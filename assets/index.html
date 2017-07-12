@@ -42,19 +42,14 @@
               </v-subheader>
             </v-flex>
             <v-flex xs3>
-              <v-text-field v-model="foodQuery" @keyup.enter.native="searchFoods" label="Find a recipe..." light></v-text-field>
+              <v-text-field :disabled="loading" v-model="foodQuery" @keyup.enter.native="searchFoods" label="Find a recipe..." light></v-text-field>
             </v-flex>
             <v-flex xs1>
-              <v-btn light @click.native="searchFoods">Search</v-btn>
-            <v-flex>
+              <v-btn :disabled="loading" light @click.native="searchFoods">Search</v-btn>
+              <v-flex>
           </v-layout>
-          <v-card v-for="(r, i) in recipes">
-            <v-card-media
-              class="white--text"
-              height="260px"
-              contain
-              :src="r.recipe.image"
-            >
+          <v-card class="my-card" raised v-for="(r, i) in recipes">
+            <v-card-media class="white--text" height="260px" contain :src="r.recipe.image">
               <v-container fill-height fluid>
                 <v-layout fill-height>
                   <v-flex xs12 align-end flexbox>
@@ -65,12 +60,17 @@
             </v-card-media>
             <v-card-title>
               <div>
-                <span class="grey--text">Result {{ i+1 }}</span><br>
+                <span class="grey--text">Result {{i+1}}</span><br>
                 <span v-text="r.recipe.label"></span><br>
+                <span>
+                   <v-chip v-for="t in r.recipe.ingredientLines" v-text="t"></v-chip>
+                </span><br>
               </div>
             </v-card-title>
             <v-card-actions>
-              <v-btn flat class="orange--text">Go to Recipe</v-btn>
+              <a :href="r.recipe.url">
+                <v-btn flat class="orange--text">Go to Recipe</v-btn>
+              </a>
             </v-card-actions>
           </v-card>
         </v-container>
@@ -81,7 +81,7 @@
   <!-- Scripts -->
   <script src="js/vue.js"></script>
   <script src="js/vuetify.js"></script>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="js/axios.min.js"></script>
   <script src="js/index.js"></script>
 </body>
 

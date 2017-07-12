@@ -11,23 +11,27 @@ var app = new Vue({
       }
     ],
     foodQuery: '',
-    recipes: []
+    recipes: [],
+    loading: false
   },
   methods: {
     searchFoods() {
+      this.loading = true
       axios.get('/get_recipes', {
           params: {
             q: this.foodQuery
           }
         })
-        .then(function (response) {
+        .then(function(response) {
           app.recipes = response.data.hits;
+          app.loading = false;
         })
-        .catch(function (error) {
+        .catch(function(error) {
           app.recipes = [];
+          app.loading = false;
           console.log(error);
         });
-        this.foodQuery = '';
+      this.foodQuery = '';
     }
   }
 })
