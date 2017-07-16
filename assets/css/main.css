@@ -2,10 +2,15 @@
   display: none;
 }
 
-.green {
-  color: "#1ED760";
+.search {
+  margin-top: 10px;
+  margin-right: 5px;
+  margin-left: 10px;
 }
 
-.grey {
-  color: "#282828";
+.recipe {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 2.5px;
+  margin-right: 2.5px;
 }

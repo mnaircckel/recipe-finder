@@ -15,64 +15,74 @@
 <body>
   <div id="app">
     <v-app v-cloak standalone>
-      <v-navigation-drawer permanent floating light class="transparent">
-        <v-card class="ma-3">
-          <v-list dense class="py-0">
-            <v-list-tile v-for="item in dashItems" :key="item" class="grey lighten-2">
-              <v-list-tile-action>
-                <v-icon>{{ item.icon }}</v-icon>
-              </v-list-tile-action>
-              <v-list-tile-content>
-                <v-list-tile-title>{{ item.title }}</v-list-tile-title>
-              </v-list-tile-content>
-            </v-list-tile>
-          </v-list>
-        </v-card>
+
+      <v-navigation-drawer permanent floating light class="light grey lighten-3">
+        <v-list dense class="pt-0 grey lighten-3">
+          <v-list-tile>
+            <v-list-tile-action>
+              <v-icon>home</v-icon>
+            </v-list-tile-action>
+            <v-list-tile-title>Home</v-list-tile-title>
+          </v-list-tile>
+          <v-list-tile>
+            <v-list-tile-action>
+              <v-icon>forum</v-icon>
+            </v-list-tile-action>
+            <v-list-tile-title>About</v-list-tile-title>
+          </v-list-tile>
+        </v-list>
       </v-navigation-drawer>
-      <v-toolbar class="green" light>
+
+      <v-toolbar class="cyan darken-1" dark fixed>
+        <v-icon>restaurant_menu</v-icon>
         <v-toolbar-title>Recipe Finder</v-toolbar-title>
       </v-toolbar>
+
       <main>
         <v-container fluid>
-
-          <v-layout row>
-            <v-flex xs1>
-              <v-subheader class="black--text text--lighten-1">
-                <v-icon>search</v-icon>
-              </v-subheader>
-            </v-flex>
+          <v-layout row wrap>
             <v-flex xs3>
-              <v-text-field :disabled="loading" v-model="foodQuery" @keyup.enter.native="searchFoods" label="Find a recipe..." light></v-text-field>
+              <v-layout row>
+                <v-text-field v-model="foodQuery" label="Enter a recipe"></v-text-field>
+                <v-btn @click.native="searchFoods" class="search">
+                  <v-icon>search</v-icon>
+                </v-btn>
+              </v-layout>
             </v-flex>
-            <v-flex xs1>
-              <v-btn :disabled="loading" light @click.native="searchFoods">Search</v-btn>
-              <v-flex>
-          </v-layout>
-          <v-card class="my-card" raised v-for="(r, i) in recipes">
-            <v-card-media class="white--text" height="260px" contain :src="r.recipe.image">
-              <v-container fill-height fluid>
-                <v-layout fill-height>
-                  <v-flex xs12 align-end flexbox>
-                    <span class="headline"></span>
-                  </v-flex>
-                </v-layout>
-              </v-container>
-            </v-card-media>
-            <v-card-title>
-              <div>
-                <span class="grey--text">Result {{i+1}}</span><br>
-                <span v-text="r.recipe.label"></span><br>
-                <span>
-                   <v-chip v-for="t in r.recipe.ingredientLines" v-text="t"></v-chip>
-                </span><br>
-              </div>
-            </v-card-title>
-            <v-card-actions>
-              <a :href="r.recipe.url">
-                <v-btn flat class="orange--text">Go to Recipe</v-btn>
-              </a>
-            </v-card-actions>
-          </v-card>
+
+            <!-- Recipe Results -->
+            <v-flex xs8>
+              <v-layout v-if="recipes.length !== 0" row v-for="i in Math.floor(recipes.length/2)">
+                <v-flex xs6>
+
+                  <v-card class="recipe" height="190px">
+                    <v-card-media :src="recipes[(i - 1) * 2].recipe.image" height="50px">
+                    </v-card-media>
+                    <v-card-title primary-title>
+                      <div>
+                        <h3 class="headline mb-0"><a :href="recipes[(i - 1) * 2].recipe.url" target="_blank">{{ recipes[(i - 1) * 2].recipe.label }}</a></h3>
+                      </div>
+                    </v-card-title>
+                  </v-card>
+
+                </v-flex xs6>
+                <v-flex xs6>
+
+                  <v-card class="recipe" height="190px">
+                    <v-card-media :src="recipes[(i - 1) * 2 + 1].recipe.image" height="50px">
+                    </v-card-media>
+                    <v-card-title primary-title>
+                      <div>
+                        <h3 class="headline mb-0"><a :href="recipes[(i - 1) * 2].recipe.url" target="_blank">{{ recipes[(i - 1) * 2 + 1].recipe.label }}</a></h3>
+                      </div>
+                    </v-card-title>
+                  </v-card>
+
+                </v-flex xs6>
+                <v-layout row>
+            </v-flex>
+
+            </v-layout>
         </v-container>
       </main>
     </v-app>
